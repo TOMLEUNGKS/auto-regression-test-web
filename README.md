@@ -1,2 +1,10 @@
 # auto-regression-test-web
-Automated regression testing for a web application
+An automated regression testing for a web application
+
+### Technologies involved:
+- Maven
+- Cucumber framework
+- TestNG
+- Selenium
+- Appium
+- Apache POI
