@@ -1,5 +1,6 @@
 package utilities;
 
+import java.awt.Dimension;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -10,6 +11,8 @@ import java.io.IOException;
 import java.text.DecimalFormat;
 
 import org.openqa.selenium.TakesScreenshot;
+
+private static Scenario myScenario;
 
 public class ScreenshotUtil {
     
@@ -75,4 +78,15 @@ public class ScreenshotUtil {
         byte[] screenshot = ts.getScreenshotAs(OutputType.BYTES);
         myScenario.attach(screenshot, "image/png", "image");
     }
+
+    public static void captureWholeScreen() throws Exception {
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        Rectangle screenRectangle = new Rectangle(screenSize);
+        Robot robot = new Robot();
+        BufferedImage image = robot.createScreenCapture(screenRectangle);
+        ByteArrayOutputStream result = new ByteArrayOutputStream();
+        ImageIO.write(image, "png", result);
+        myScenario.attach(result.toByteArray(), "image/png", "image");
+    }
+
 }
